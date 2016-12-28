@@ -4,5 +4,5 @@ module.exports = {
     filename: 'b.js',
     path: './public'
   },
-  stats: 'minimal'
+  stats: 'verbose'
 }

@@ -8,11 +8,9 @@ build: $(LIB) public/b.js
 
 $(LIB): lib/%.js: src/%.js
 	@mkdir -p $(@D)
-	@echo -n .
-	@$(BABEL) $< --out-file $@ --copy-files
+	$(BABEL) $< --out-file $@ --copy-files
 
-public/b.js: ./lib/client/*.js
-	@echo
+public/b.js: $(filter lib/client/%.js,$(LIB))
 	@$(WEBPACK) $(WEBPACK_ARGS)
 
 clean:
