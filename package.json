@@ -1,0 +1,13 @@
+{
+  "name": "snapfui",
+  "version": "1.0.0",
+  "description": "Snap Finder UI",
+  "main": "UI for Snap Finder Service",
+  "repository": "git@github.com:earnubs/snapfui.git",
+  "author": "Stephen Stewart <stephen.stewart@carisenda.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "webpack": "2.2.0-rc.3"
+  }
+}
