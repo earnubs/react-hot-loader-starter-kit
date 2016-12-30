@@ -1,4 +1,7 @@
-const foo = () => {};
-const bar = () => {};
+import Reacti, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-export default foo;
+import { render } from 'react-dom';
+
