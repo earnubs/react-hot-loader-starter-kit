@@ -4,7 +4,7 @@ module.exports = {
   target: 'web',
   entry: {
     main: './lib/client/index.js',
-    // XXX consider externals here
+    // TODO consider externals here
     vendor: [
       'react',
       'react-dom',
@@ -20,7 +20,7 @@ module.exports = {
   },
   stats: 'verbose',
   performance: {
-    hints: false
+    hints: 'warning'
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
@@ -39,7 +39,7 @@ module.exports = {
       loader: 'babel-loader',
       query: {
         cacheDirectory: './webpack_cache',
-        babelrc: false,
+        babelrc: false, // don't confuse babel for server with babel for browser
         presets: [
           'es2015',
           'react'
@@ -47,4 +47,4 @@ module.exports = {
       },
     }]
   }
-}
+};

@@ -1,21 +1,24 @@
 BABEL = node_modules/.bin/babel
 WEBPACK = node_modules/.bin/webpack
+LINT = node_modules/.bin/eslint
 
-BABEL_ARGS = --presets=react
-WEBPACK_ARGS = --config webpack/config.js
+BABEL_ARGS = --presets=react \
+	     --plugins=babel-plugin-transform-es2015-modules-commonjs
+WEBPACK_ARGS = --config webpack/config.js -p
 
 SRC = $(shell find src -name "*.js" -type f)
 LIB = $(SRC:src/%.js=lib/%.js)
 
-build: $(LIB) public/b.js
+build: $(LIB) public/b.js package.json
 #https://www.gnu.org/software/make/manual/html_node/Multiple-Targets.html
 start: $(filter lib/server/%.js,$(LIB))
-	node ./lib/server/index.js
+	node ./lib/server
 #start-dev: node ./lib/server/dev.js
 
 # transpile all sources for node/server environment
 $(LIB): lib/%.js: src/%.js
 	@mkdir -p $(@D)
+	$(LINT) $<
 	$(BABEL) $< --out-file $@ $(BABEL_ARGS)
 
 # bundle for browser
