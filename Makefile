@@ -3,7 +3,8 @@ WEBPACK = node_modules/.bin/webpack
 LINT = node_modules/.bin/eslint
 
 BABEL_ARGS = --presets=react \
-	     --plugins=babel-plugin-transform-es2015-modules-commonjs
+	     --plugins=babel-plugin-transform-es2015-modules-commonjs \
+	     --source-maps
 WEBPACK_ARGS = --config webpack/config.js -p
 
 SRC = $(shell find src -name "*.js" -type f)

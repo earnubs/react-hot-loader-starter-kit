@@ -1,9 +1,11 @@
+import 'source-map-support/register';
 import Express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from '../client/containers/app';
+import reducers from '../client/reducers';
 
 const app = Express();
 const port = 3000;
@@ -14,7 +16,7 @@ app.use(handleRender);
 // We are going to fill these out in the sections to follow
 function handleRender(req, res) {
   // Create a new Redux store instance
-  const store = createStore({});
+  const store = createStore(reducers);
 
   // Render the component to a string
   const html = renderToString(
