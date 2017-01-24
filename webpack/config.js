@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+const AssetsPlugin = require('assets-webpack-plugin');
 
 module.exports = {
   target: 'web',
   entry: {
-    main: './lib/client/index.js',
+    main: './src/client/index.js',
     // TODO consider externals here
     vendor: [
       'react',
@@ -23,6 +24,7 @@ module.exports = {
     hints: 'warning'
   },
   plugins: [
+    new AssetsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
     }),

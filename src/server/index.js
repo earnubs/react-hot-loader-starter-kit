@@ -3,53 +3,44 @@ import Express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import App from '../client/containers/app';
+import { match, RouterContext } from 'react-router';
+
 import reducers from '../client/reducers';
+import routes from '../client/routes';
+import Html from './root.js';
+import assets from '../../webpack-assets.json';
 
 const app = Express();
 const port = 3000;
 
-// This is fired every time the server side receives a request
-app.use(handleRender);
+app.use(Express.static('public', { maxAge: '365d' }));
 
-// We are going to fill these out in the sections to follow
-function handleRender(req, res) {
-  // Create a new Redux store instance
-  const store = createStore(reducers);
+app.get('*', (req, res) => {
+  // match the routes to the url
+  match({ routes: routes, location: req.url }, (err, redirect, props) => {
+    if (err) {
+      res.status(500).send(err.message);
+    } else if (redirect) {
+      res.redirect(redirect.pathname + redirect.search);
+    } else if (props) {
 
-  // Render the component to a string
-  const html = renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+      const component = <RouterContext {...props}/>;
+      const store = createStore(reducers);
 
-  // Grab the initial state from our Redux store
-  const preloadedState = store.getState();
+      res.status(200);
+      res.send('<!doctype html>\n' +
+        renderToString(
+          <Html
+            store={ store }
+            component={ component }
+            assets={ assets }
+          />
+        ));
+    } else {
+      res.status(404).send('Snapfui: Not Found');
+    }
 
-  // Send the rendered page back to the client
-  res.send(renderFullPage(html, preloadedState));
-}
-
-function renderFullPage(html, preloadedState) {
-  return `
-    <!doctype html>
-    <html>
-      <head>
-        <title>Redux Universal Example</title>
-      </head>
-      <body>
-        <div id="root">${html}</div>
-        <script>
-          // WARNING: See the following for Security isues with this approach:
-          // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
-        </script>
-        <script src="/static/bundle.js"></script>
-      </body>
-    </html>
-    `;
-}
+  });
+});
 
 app.listen(port);
