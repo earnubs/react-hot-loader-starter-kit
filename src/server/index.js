@@ -11,7 +11,6 @@ import Html from './root.js';
 import assets from '../../webpack-assets.json';
 
 const app = Express();
-const port = 3000;
 
 app.use(Express.static('public', { maxAge: '365d' }));
 
@@ -43,4 +42,4 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(port);
+export default app;

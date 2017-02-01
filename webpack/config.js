@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
@@ -17,7 +18,7 @@ module.exports = {
   },
   output: {
     filename: '[chunkhash].[name].js',
-    path: './public'
+    path: path.resolve(__dirname, 'public')
   },
   stats: 'verbose',
   performance: {
@@ -40,12 +41,7 @@ module.exports = {
       exclude: /(node_modules)/,
       loader: 'babel-loader',
       query: {
-        cacheDirectory: './webpack_cache',
-        babelrc: false, // don't confuse babel for server with babel for browser
-        presets: [
-          'es2015',
-          'react'
-        ]
+        cacheDirectory: './webpack_cache'
       },
     }]
   }
