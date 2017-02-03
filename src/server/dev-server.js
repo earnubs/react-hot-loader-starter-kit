@@ -1,18 +1,18 @@
-require('babel-register');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpack = require('webpack');
+require('babel-register')({
+  babelrc: false, // dev uses babel-register and hmr, prod doesn't
+  presets: [
+    'es2015',
+    //'stage-2',
+    'react'
+  ],
+  plugins: [
+    //  'react-hot-loader/babel'
+  ]
+});
 const chalk = require('chalk');
 
-const webpackConfig = require('../../webpack/config.js');
 const app = require('./index.js').default;
 
-const compiler = webpack(webpackConfig);
-
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: '/', // Same as `output.publicPath` in most cases.
-  stats: 'none'
-}));
-
-app.listen(3000, () => console.log( // eslint-disable-line no-console
+app.listen(3000, '0.0.0.0', () => console.log( // eslint-disable-line no-console
   chalk.bold.inverse.green('DEV SERVER: listening on port 3000')
 ));

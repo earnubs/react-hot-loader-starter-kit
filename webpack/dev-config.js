@@ -2,10 +2,15 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
+const hmr = [
+  'babel-polyfill',
+  //'webpack-hot-middleware/client?/__webpack_hmr'
+];
+
 module.exports = {
   target: 'web',
   entry: {
-    main: './src/client/index.js',
+    main: ['./src/client/index.js'].concat(hmr),
     // TODO consider externals here
     vendor: [
       'react',
@@ -14,16 +19,13 @@ module.exports = {
       'react-redux',
       'react-router',
       'react-router-redux'
-    ]
+    ].concat(hmr)
   },
   output: {
-    filename: '[chunkhash].[name].js',
+    filename: '[name].js', // don't use chunkhash in dev
     path: resolve(__dirname, '../public'),
+    pathinfo: true,
     publicPath: '/assets/'
-  },
-  stats: 'verbose',
-  performance: {
-    hints: 'warning'
   },
   module: {
     rules: [{
@@ -33,14 +35,11 @@ module.exports = {
     }]
   },
   plugins: [
+    //new webpack.HotModuleReplacementPlugin(),
+    //new webpack.NamedModulesPlugin(),
     new AssetsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress:{
-        warnings: false
-      }
     })
   ]
 };
