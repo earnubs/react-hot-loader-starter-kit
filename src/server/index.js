@@ -7,6 +7,7 @@ import { match, RouterContext } from 'react-router';
 
 // dev server only
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 
 import webpackDevConfig from '../../webpack/dev-config.js';
@@ -23,11 +24,16 @@ app.use('/assets', Express.static('public', { maxAge: '365d' }));
 // TODO ensure this gets DCE
 if (process.env.NODE_ENV !== 'production') {
   const compiler = webpack(webpackDevConfig);
+
   app.use(webpackDevMiddleware(compiler, {
     // this tells the middleware where to send assets in memory, so
     // if you're seeing 404's for assets it's probably because this isn't
     // set correctly in this middleware
     publicPath: webpackDevConfig.output.publicPath
+  }));
+
+  app.use(webpackHotMiddleware(compiler, {
+    reload: true // reload page when webpack gets stuck
   }));
 }
 

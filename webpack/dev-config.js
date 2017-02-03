@@ -4,7 +4,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 
 const hmr = [
   'babel-polyfill',
-  //'webpack-hot-middleware/client?/__webpack_hmr'
+  'webpack-hot-middleware/client'
 ];
 
 module.exports = {
@@ -35,8 +35,9 @@ module.exports = {
     }]
   },
   plugins: [
-    //new webpack.HotModuleReplacementPlugin(),
-    //new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoErrorsPlugin(),
     new AssetsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
