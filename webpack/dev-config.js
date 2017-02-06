@@ -22,15 +22,14 @@ module.exports = {
       'react-router-redux'
     ])
   },
-  performance: { hints: false },
-  devServer: {
-    hot: true
-  },
   output: {
     filename: '[name].js', // don't use chunkhash in dev
     path: resolve(__dirname, '../public'),
     pathinfo: true,
     publicPath: '/assets/'
+  },
+  performance: {
+    hints: false
   },
   module: {
     rules: [{
@@ -50,10 +49,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new AssetsPlugin(),
+    // XXX manifest?
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest']
+      name: ['vendor']
     })
   ]
 };

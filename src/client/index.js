@@ -17,17 +17,22 @@ const store = createStore(reducers, preloadedState);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-render(
-  <AppContainer>
-    <Provider store={store}>
-      <Router routes={routes} history={history} />
-    </Provider>
-  </AppContainer>,
-  document.getElementById('content')
-);
+const rr = () => {
+  return render(
+    <AppContainer>
+      <Provider store={store}>
+        <Router routes={routes} history={history} />
+      </Provider>
+    </AppContainer>,
+    document.getElementById('content')
+  );
+};
+
+rr();
 
 if (module.hot) {
   module.hot.accept('./routes', () => {
-    console.log('aslaslals');
+    console.log('module.hot.accept');
+    rr();
   });
 }

@@ -22,7 +22,6 @@ export default class Html extends Component {
           <script
             dangerouslySetInnerHTML={{ __html: `window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}` }}
           />
-          <script src={ assets.manifest.js } />
           <script src={ assets.vendor.js } />
           <script src={ assets.main.js } />
         </body>
