@@ -29,7 +29,8 @@ if (process.env.NODE_ENV !== 'production') {
     // this tells the middleware where to send assets in memory, so
     // if you're seeing 404's for assets it's probably because this isn't
     // set correctly in this middleware
-    publicPath: webpackDevConfig.output.publicPath
+    publicPath: webpackDevConfig.output.publicPath,
+    hot: true
   }));
 
   app.use(webpackHotMiddleware(compiler, {

@@ -32,7 +32,7 @@ public: $(filter src/client/%.js,$(SRC))
 	$(WEBPACK) $(WEBPACK_ARGS)
 
 clean :
-	rm -rf lib public
+	rm -rf lib public webpack_cache
 
 clean-deps :
 	rm -rf node_modules

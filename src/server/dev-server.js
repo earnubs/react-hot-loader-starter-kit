@@ -1,12 +1,9 @@
 require('babel-register')({
   babelrc: false, // dev uses babel-register and hmr, prod doesn't
   presets: [
-    'es2015',
-    //'stage-2',
+    'es2015', // node needs modules
+    'stage-2',
     'react'
-  ],
-  plugins: [
-    //  'react-hot-loader/babel'
   ]
 });
 const chalk = require('chalk');

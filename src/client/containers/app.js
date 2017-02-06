@@ -8,7 +8,7 @@ export default class App extends Component {
         <div className={'b-nav'}>
           <div className={'b-nav__wrap'}>
             <div className={'b-nav__homelink'}>
-              <Link to='/'>Snapfui</Link>
+              <Link to='/'>iSnapfui</Link>
             </div>
           </div>
         </div>
