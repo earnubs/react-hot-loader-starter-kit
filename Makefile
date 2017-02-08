@@ -28,7 +28,7 @@ $(LIB) : lib/%.js: src/%.js
 
 # bundle for browser
 public: $(filter src/client/%.js,$(SRC))
-	mkdir ./public
+	mkdir -p ./public
 	$(WEBPACK) $(WEBPACK_ARGS)
 
 clean :
