@@ -12,7 +12,7 @@ LIB = $(SRC:src/%.js=lib/%.js)
 
 all : build
 
-build : $(LIB) public
+build : $(LIB) public/.dirstamp lib/server/favicon.ico
 
 start :
 	node ./lib/server/server.js
@@ -30,9 +30,12 @@ $(LIB) : lib/%.js: src/%.js
 	$(BABEL) $< --out-file $@ $(BABEL_ARGS)
 
 # bundle for browser
-public: $(filter src/client/%.js,$(SRC))
-	mkdir -p ./public
+public/.dirstamp: $(filter src/client/%.js,$(SRC))
+	mkdir -p ./public && touch $@
 	$(WEBPACK) $(WEBPACK_ARGS)
+
+lib/server/favicon.ico: favicon.ico
+	cp $< $@
 
 clean :
 	rm -rf lib public webpack_cache
