@@ -11,7 +11,7 @@ const Layout = React.createClass({
         <div className={'b-nav'}>
           <div className={'b-nav__wrap'}>
             <div className={'b-nav__homelink'}>
-              <Link to='/'>Snapfui</Link>
+              <Link to='/'>Home</Link>
               <Link to='/about'>About</Link>
             </div>
           </div>
