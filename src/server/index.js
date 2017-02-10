@@ -23,8 +23,8 @@ import assets from '../../webpack-assets.json';
 
 const app = Express();
 
-app.use(favicon(__dirname + '/favicon.ico'));
-app.use('/assets', Express.static('public', { maxAge: '365d' }));
+app.use(favicon('./public/favicon.ico'));
+app.use('/pub', Express.static('public', { maxAge: '365d' }));
 
 // TODO ensure this gets DCE
 if (process.env.NODE_ENV !== 'production') {

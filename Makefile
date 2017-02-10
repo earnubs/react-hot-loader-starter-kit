@@ -12,12 +12,12 @@ LIB = $(SRC:src/%.js=lib/%.js)
 
 all : build
 
-build : $(LIB) public/.dirstamp lib/server/favicon.ico
+build : $(LIB) public/.dirstamp public/favicon.ico
 
 start :
 	node ./lib/server/server.js
 
-start-dev :
+start-dev : public/favicon.ico
 	node ./src/server/dev-server.js
 
 start-debug :
@@ -34,7 +34,8 @@ public/.dirstamp: $(filter src/client/%.js,$(SRC))
 	mkdir -p ./public && touch $@
 	$(WEBPACK) $(WEBPACK_ARGS)
 
-lib/server/favicon.ico: favicon.ico
+public/favicon.ico: assets/favicon.ico
+	mkdir -p ./public
 	cp $< $@
 
 clean :

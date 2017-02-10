@@ -19,7 +19,7 @@ module.exports = {
   output: {
     filename: '[chunkhash].[name].js',
     path: resolve(__dirname, '../public'),
-    publicPath: '/assets/'
+    publicPath: '/pub/'
   },
   stats: 'verbose',
   performance: {
