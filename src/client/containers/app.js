@@ -1,23 +1,16 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-export default class App extends Component {
-  render() {
+import Layout from '../layout.js';
+
+const App = React.createClass({
+  render: () => {
     return (
-      <div>
-        <div className={'b-nav'}>
-          <div className={'b-nav__wrap'}>
-            <div className={'b-nav__homelink'}>
-              <Link to='/'>iSnapfui</Link>
-            </div>
-          </div>
-        </div>
-        {this.props.children}
-      </div>
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
     );
   }
-}
+});
 
-App.propTypes = {
-  children: PropTypes.object
-};
+export default App;

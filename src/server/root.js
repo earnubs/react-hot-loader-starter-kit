@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom/server';
 import Helmet from 'react-helmet';
-import { Provider } from 'react-redux';
 
 export default class Html extends Component {
   render() {
-    const { assets, store, component } = this.props;
+    const { assets, store, content } = this.props;
     const preloadedState = store.getState();
-    const content = component ? this.renderComponent(component, store) : '';
     const head = Helmet.rewind();
     const attrs = head.htmlAttributes.toComponent();
+
 
     return (
       <html {...attrs}>
@@ -29,17 +27,10 @@ export default class Html extends Component {
     );
   }
 
-  renderComponent(component, store) {
-    return ReactDOM.renderToString(
-      <Provider store={store} key="provider">
-        { component }
-      </Provider>
-    );
-  }
 }
 
 Html.propTypes = {
-  component: PropTypes.node,
+  content: PropTypes.string,
   store: PropTypes.object,
   assets: PropTypes.object
 };

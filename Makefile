@@ -20,6 +20,9 @@ start :
 start-dev :
 	node ./src/server/dev-server.js
 
+start-debug :
+	DEBUG=express:* node --inspect ./src/server/dev-server.js
+
 # node/server libs
 $(LIB) : lib/%.js: src/%.js
 	mkdir -p $(@D)

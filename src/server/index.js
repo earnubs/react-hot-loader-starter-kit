@@ -1,9 +1,13 @@
 import 'source-map-support/register';
 import Express from 'express';
+import favicon from 'serve-favicon';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
-import { match, RouterContext } from 'react-router';
+import {
+  StaticRouter
+} from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 // dev server only
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -12,13 +16,14 @@ import webpack from 'webpack';
 
 import webpackDevConfig from '../../webpack/dev-config.js';
 
+import Layout from '../client/layout.js';
 import reducers from '../client/reducers';
-import routes from '../client/routes';
 import Html from './root.js';
 import assets from '../../webpack-assets.json';
 
 const app = Express();
 
+app.use(favicon(__dirname + '/favicon.ico'));
 app.use('/assets', Express.static('public', { maxAge: '365d' }));
 
 // TODO ensure this gets DCE
@@ -39,6 +44,31 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.get('*', (req, res) => {
+
+  const store = createStore(reducers);
+  const context = {};
+
+  const content = renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <Provider store={store} key="provider">
+        <Layout />
+      </Provider>
+    </StaticRouter>
+  );
+
+  // in order for the bundled react to reconcile with the server rendered tree,
+  // we must renderToString the two different sections, so that the render from
+  // client/index has a matching tree
+  const html = renderToString(
+    <Html
+      store={ store }
+      assets={ assets }
+      content= { content }
+    />
+  );
+
+  res.send(html);
+  /**
   // match the routes to the url
   match({ routes: routes, location: req.url }, (err, redirect, props) => {
     if (err) {
@@ -64,6 +94,7 @@ app.get('*', (req, res) => {
     }
 
   });
+   **/
 });
 
 export default app;
