@@ -1,5 +1,5 @@
-import React from 'react';
 import { AppContainer } from 'react-hot-loader';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { render } from 'react-dom';
@@ -11,22 +11,29 @@ import reducers from './reducers';
 const preloadedState = window.__PRELOADED_STATE__;
 
 // Create Redux store with initial state
-const store = createStore(
+const store = (module.hot && module.hot.data && module.hot.data.store)
+  ? module.hot.data.store
+  : createStore(
   reducers, preloadedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+const contentEl = document.getElementById('content');
+
 render(
-  <AppContainer>
-    <Provider store={store}>
+  <Provider store={store}>
+    <AppContainer>
       <App />
-    </Provider>
-  </AppContainer>,
-  document.getElementById('content')
+    </AppContainer>
+  </Provider>,
+  contentEl
 );
 
 if (module.hot) {
-  module.hot.accept('./containers/app.js', () => {
-    console.log('module.hot.accept'); // eslint-disable-line no-console
+
+  module.hot.accept();
+
+  module.hot.dispose((data) => {
+    data.store = store;
   });
 }
