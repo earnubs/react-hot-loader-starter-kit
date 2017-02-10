@@ -3,7 +3,6 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { render } from 'react-dom';
-//import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './containers/app';
 import reducers from './reducers';
@@ -12,9 +11,12 @@ import reducers from './reducers';
 const preloadedState = window.__PRELOADED_STATE__;
 
 // Create Redux store with initial state
-const store = createStore(reducers, preloadedState);
+const store = createStore(
+  reducers, preloadedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-//const history = syncHistoryWithStore(browserHistory, store);
+console.log(store.getState());
 
 render(
   <AppContainer>

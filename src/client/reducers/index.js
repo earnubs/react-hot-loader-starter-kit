@@ -1,8 +1,23 @@
-import { routerReducer as routing } from 'react-router-redux';
 import { combineReducers } from 'redux';
 
+import * as actions from '../actions';
+
 const rootReducer = combineReducers({
-  routing
+  sayStuff
 });
+
+export function sayStuff(state={}, action) {
+  switch (action.type) {
+    case actions.SAY_HELLO:
+      return [
+        ...state,
+        {
+          to: action.who
+        }
+      ];
+    default:
+      return state;
+  }
+}
 
 export default rootReducer;

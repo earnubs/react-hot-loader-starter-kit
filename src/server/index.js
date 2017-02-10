@@ -68,33 +68,6 @@ app.get('*', (req, res) => {
   );
 
   res.send(html);
-  /**
-  // match the routes to the url
-  match({ routes: routes, location: req.url }, (err, redirect, props) => {
-    if (err) {
-      res.status(500).send(err.message);
-    } else if (redirect) {
-      res.redirect(redirect.pathname + redirect.search);
-    } else if (props) {
-
-      const component = <RouterContext {...props}/>;
-      const store = createStore(reducers);
-
-      res.status(200);
-      res.send('<!doctype html>\n' +
-        renderToString(
-          <Html
-            store={ store }
-            component={ component }
-            assets={ assets }
-          />
-        ));
-    } else {
-      res.status(404).send('Snapfui: Not Found');
-    }
-
-  });
-   **/
 });
 
 export default app;
