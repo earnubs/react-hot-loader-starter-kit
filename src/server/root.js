@@ -14,6 +14,7 @@ export default class Html extends Component {
         <head>
           {head.title.toComponent()}
           {head.meta.toComponent()}
+          <link rel="stylesheet" href={ assets.main.css } />
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{ __html: content }}/>

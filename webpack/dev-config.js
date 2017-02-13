@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const hmr = [
   'react-hot-loader/patch',
@@ -44,9 +45,19 @@ module.exports = {
         loader: 'react-hot'
       }],
       include: resolve(__dirname, 'src')
+    }, {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        use: [{
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader'
+        }]
+      })
     }]
   },
   plugins: [
+    new ExtractTextPlugin('styles.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
