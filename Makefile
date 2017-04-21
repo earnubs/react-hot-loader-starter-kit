@@ -5,7 +5,9 @@ LINT = node_modules/.bin/eslint
 # node targetted babel: ignore .babelrc which targets webpack/browser
 BABEL_ARGS = --no-babelrc --source-maps --presets=react \
 	     --plugins=babel-plugin-transform-es2015-modules-commonjs
-WEBPACK_ARGS = --config webpack/config.js -p
+
+WEBPACK_PROD_ARGS = --config webpack/config.js -p
+WEBPACK_DEV_ARGS = --config webpack/dev-config.js
 
 SRC = $(shell find src -name "*.js" -type f)
 LIB = $(SRC:src/%.js=lib/%.js)
@@ -32,7 +34,13 @@ $(LIB) : lib/%.js: src/%.js
 # bundle for browser
 public/.dirstamp: $(filter src/client/%.js,$(SRC))
 	mkdir -p ./public && touch $@
-	$(WEBPACK) $(WEBPACK_ARGS)
+ifeq ($(strip $(NODE_ENV)), PRODUCTION)
+	@echo "Webpack building with production config"
+	$(WEBPACK) $(WEBPACK_PROD_ARGS)
+else
+	@echo "\033[41mWebpack building with development config\033[0m"
+	$(WEBPACK) $(WEBPACK_DEV_ARGS)
+endif
 
 public/favicon.ico: assets/favicon.ico
 	mkdir -p ./public
