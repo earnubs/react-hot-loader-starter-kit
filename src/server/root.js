@@ -1,21 +1,23 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 export default class Html extends Component {
   render() {
     const { assets, store, content } = this.props;
     const preloadedState = store.getState();
-    const head = Helmet.rewind();
-    const attrs = head.htmlAttributes.toComponent();
+    const helmet = Helmet.renderStatic();
+    const htmlAttrs = helmet.htmlAttributes.toComponent();
+    const bodyAttrs = helmet.bodyAttributes.toComponent();
 
 
     return (
-      <html {...attrs}>
+      <html {...htmlAttrs}>
         <head>
-          {head.title.toComponent()}
-          {head.meta.toComponent()}
+          {helmet.title.toComponent()}
+          {helmet.meta.toComponent()}
         </head>
-        <body>
+        <body {...bodyAttrs}>
           <div id="content" dangerouslySetInnerHTML={{ __html: content }}/>
           <script
             dangerouslySetInnerHTML={{ __html: `window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}` }}

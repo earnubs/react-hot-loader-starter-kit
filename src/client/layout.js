@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import Home from './containers/home.js';
 import About from './containers/about.js';
 
-const Layout = React.createClass({
-  render: () => {
+//debugger; // eslint-disable-line no-debugger
+
+export default class Layout extends Component {
+  render() {
     return (
       <div>
         <div className={'b-nav'}>
@@ -21,6 +23,4 @@ const Layout = React.createClass({
       </div>
     );
   }
-});
-
-export default Layout;
+}
