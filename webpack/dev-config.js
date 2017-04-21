@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
 const hmr = [
+  'babel-polyfill',
   'react-hot-loader/patch',
   'webpack-hot-middleware/client?noInfo=false'
 ];
@@ -13,21 +14,22 @@ module.exports = {
   entry: {
     main: hmr.concat(['./src/client/index.js']),
     // TODO consider externals here
-    vendor: hmr.concat([
+    vendor: [
       'react',
       'react-dom',
       'redux',
       'react-redux',
       'react-router',
       'react-router-redux'
-    ])
+    ]
   },
   output: {
     filename: '[name].js', // don't use chunkhash in dev
     path: resolve(__dirname, '../public'),
     pathinfo: true,
-    publicPath: '/pub/'
+    publicPath: '/'
   },
+  devtool: 'inline-source-map',
   performance: {
     hints: false
   },
