@@ -38,7 +38,7 @@ $(LIB) : lib/%.js: src/%.js
 # bundle for browser
 public/.dirstamp: $(filter src/client/%.js,$(SRC))
 	mkdir -p ./public && touch $@
-ifeq ($(strip $(NODE_ENV)), PRODUCTION)
+ifeq ($(strip $(NODE_ENV)), production)
 	@echo "Webpack building with production config"
 	$(WEBPACK) $(WEBPACK_PROD_ARGS)
 else
