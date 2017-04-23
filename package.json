@@ -2,7 +2,7 @@
   "name": "snapfui",
   "version": "1.0.0",
   "engines": {
-    "node": "7"
+    "node": "7.7.2"
   },
   "description": "Snap Finder UI",
   "scripts": {
