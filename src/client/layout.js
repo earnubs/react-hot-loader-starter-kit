@@ -1,25 +1,15 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import Home from './containers/home.js';
-import About from './containers/about.js';
-
-//debugger; // eslint-disable-line no-debugger
+import Latest from './containers/home.js';
+import Historic from './containers/chart.js';
 
 export default class Layout extends Component {
   render() {
     return (
       <div>
-        <div className={'b-nav'}>
-          <div className={'b-nav__wrap'}>
-            <div className={'b-nav__homelink'}>
-              <Link to='/'>Home</Link>
-              <Link to='/about'>About</Link>
-            </div>
-          </div>
-        </div>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
+        <Route exact path='/' component={Latest} />
+        <Route path='/chart/:cur1/:cur2' component={Historic} />
       </div>
     );
   }
