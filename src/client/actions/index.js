@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
+const API_URL = 'https://api.fixer.io';
 const DEFAULT_SYMBOLS = [
   'USD',
   'EUR',
@@ -8,7 +9,7 @@ const DEFAULT_SYMBOLS = [
   'AUD',
   'CAD',
   'CHF',
-  'CNY',
+  'CNY' ,
   'SEK',
   'NZD'
 ];
@@ -34,7 +35,7 @@ export function fetchRates() {
   return function (dispatch) {
     dispatch(requestRates());
 
-    return fetch(`http://api.fixer.io/latest?symbols=${DEFAULT_SYMBOLS}`)
+    return fetch(`${API_URL}/latest?symbols=${DEFAULT_SYMBOLS}`)
       .then(response => response.json())
       .then(json =>
         dispatch(requestRatesSuccess(json))
@@ -79,7 +80,7 @@ export function fetch5DayRates(symbols, dates) {
     dispatch(request5DayRates);
 
     return Promise.all(dates.reverse().map(date => {
-      return fetch(`http://api.fixer.io/${date}?symbols=${symbols.join()}`)
+      return fetch(`${API_URL}/${date}?symbols=${symbols.join()}`)
         .then(response => response.json());
     }))
       .then(json => {
