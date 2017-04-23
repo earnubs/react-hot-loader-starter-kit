@@ -28,15 +28,20 @@
     "webpack-hot-middleware": "^2.16.1"
   },
   "dependencies": {
+    "chart.js": "https://github.com/chartjs/Chart.js.git",
     "express": "^4.14.0",
+    "history": "^4.6.1",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.8",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-helmet": "^5.0.3",
     "react-redux": "^5.0.1",
     "react-router-dom": "^4.1.1",
-    "react-router-redux": "^4.0.7",
+    "react-router-redux": "next",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "serve-favicon": "^2.3.2",
     "source-map-support": "^0.4.10"
   }
