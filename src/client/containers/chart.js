@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Chart from 'chart.js';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import { fetch5DayRates } from '../actions';
 
@@ -13,7 +14,7 @@ export class Historic extends Component {
     const { dispatch, match } = this.props;
 
     this.symbols = Object.values(match.params);
-    dispatch(fetch5DayRates(this.symbols));
+    dispatch(fetch5DayRates(this.symbols, this.getDates()));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,6 +39,23 @@ export class Historic extends Component {
         }
       });
     }
+  }
+
+  /**
+   * getDates - returns dates of last 5 week days (not including Sat and Sun)
+   */
+  getDates() {
+    let days = 7;
+    const dates = [];
+    while (days--) {
+      let date = moment().subtract(days, 'days').format('YYYY-MM-DD');
+
+      if (moment(date).isoWeekday() < 6) {
+        dates.push(date);
+      }
+    }
+
+    return dates;
   }
 
   render() {

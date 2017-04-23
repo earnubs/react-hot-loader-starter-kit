@@ -74,13 +74,9 @@ export function request5DayRates() {
   };
 }
 
-export function fetch5DayRates(symbols) {
+export function fetch5DayRates(symbols, dates) {
   return function (dispatch) {
     dispatch(request5DayRates);
-
-    // TODO use momentjs to figure out correct dates, rates are updated "daily daily around 4PM CET"
-    // TODO working days only
-    const dates = ['2017-04-21', '2017-04-20', '2017-04-19', '2017-04-18', '2017-04-13'];
 
     return Promise.all(dates.reverse().map(date => {
       return fetch(`http://api.fixer.io/${date}?symbols=${symbols.join()}`)
