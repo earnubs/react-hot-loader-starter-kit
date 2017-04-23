@@ -36,11 +36,6 @@ module.exports = {
     new AssetsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor']
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress:{
-        warnings: false
-      }
     })
   ]
 };

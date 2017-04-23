@@ -6,7 +6,13 @@ export default class BaseCurrencyAmount extends Component {
     return (
       <label>
         EUR
-        <input value={ this.props.value } onChange={ this.props.handleChange } />
+        {' '}
+        <input
+          defaultValue={ 1 }
+          type={ 'number' }
+          min={ 1 }
+          onChange={ this.props.handleChange }
+        />
       </label>
     );
   }

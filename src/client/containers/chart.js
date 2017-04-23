@@ -42,7 +42,9 @@ export class Historic extends Component {
   }
 
   /**
+   *
    * getDates - returns dates of last 5 week days (not including Sat and Sun)
+   * TODO move to selector
    */
   getDates() {
     let days = 7;
@@ -55,7 +57,7 @@ export class Historic extends Component {
       }
     }
 
-    return dates;
+    return dates.reverse();
   }
 
   render() {
