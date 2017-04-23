@@ -4,7 +4,7 @@
   "description": "Snap Finder UI",
   "scripts": {
     "build": "make build",
-    "start": "make start",
+    "start": "make build start",
     "test": "jest"
   },
   "main": "UI for Snap Finder Service",

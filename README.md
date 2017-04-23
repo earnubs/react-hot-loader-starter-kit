@@ -15,5 +15,5 @@ make start-debug
 To start production:
 
 ```
-make start
+make build start
 ```
