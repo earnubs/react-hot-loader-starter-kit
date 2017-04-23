@@ -5,7 +5,7 @@ import Chart from 'chart.js';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import { fetch5DayRates } from '../actions';
+import { fetch5DayRates, clearSelectedQuotes } from '../actions';
 
 const COLOURS = ['blue', 'red'];
 
@@ -14,6 +14,7 @@ export class Historic extends Component {
     const { dispatch, match } = this.props;
 
     this.symbols = Object.values(match.params);
+    this.props.dispatch(clearSelectedQuotes());
     dispatch(fetch5DayRates(this.symbols, this.getDates()));
   }
 
