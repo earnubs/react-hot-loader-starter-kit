@@ -38,6 +38,7 @@ module.exports = {
       'error',
       'tag-aligned'
     ],
+    'react/sort-comp': [1],
     'linebreak-style': [
       'error',
       'unix'
