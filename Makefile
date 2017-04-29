@@ -4,7 +4,7 @@ LINT = node_modules/.bin/eslint
 JEST = node_modules/.bin/jest
 
 # node targetted babel: ignore .babelrc which targets webpack/browser
-BABEL_ARGS = --no-babelrc --source-maps --presets=react \
+BABEL_ARGS = --no-babelrc --source-maps --presets=react,stage-2 \
 	     --plugins=babel-plugin-transform-es2015-modules-commonjs
 
 WEBPACK_PROD_ARGS = --config webpack/config.js -p
