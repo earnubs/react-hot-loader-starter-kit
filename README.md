@@ -22,4 +22,10 @@ To start production:
 make start
 ```
 
+To run tests (*cough* what tests? *cough*)
+
+```
+make test
+```
+
 Deploy to heroku simply by pushing to heroku git or connecting to the repo on github, everything else should be setup to go, for example this repo is deployed here: https://react-universal-hot-starter.herokuapp.com/
