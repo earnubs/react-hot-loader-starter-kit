@@ -12,6 +12,9 @@
   "author": "Stephen Stewart <stephen.stewart@carisenda.com>",
   "license": "MIT",
   "devDependencies": {
+    "jest": "^19.0.2"
+  },
+  "dependencies": {
     "assets-webpack-plugin": "^3.5.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
@@ -24,23 +27,20 @@
     "eslint": "^3.14.0",
     "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-react": "^6.9.0",
-    "react-hot-loader": "^3.0.0-beta.6",
-    "webpack": "^2.2.0-rc.3",
-    "webpack-dev-middleware": "^1.10.0",
-    "webpack-hot-middleware": "^2.16.1"
-  },
-  "dependencies": {
     "express": "^4.14.0",
-    "jest": "^19.0.2",
     "prop-types": "^15.5.8",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-helmet": "^5.0.3",
+    "react-hot-loader": "^3.0.0-beta.6",
     "react-redux": "^5.0.1",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "serve-favicon": "^2.3.2",
-    "source-map-support": "^0.4.10"
+    "source-map-support": "^0.4.10",
+    "webpack": "^2.2.0-rc.3",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-hot-middleware": "^2.16.1"
   }
 }
