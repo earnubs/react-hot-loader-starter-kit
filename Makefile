@@ -1,6 +1,7 @@
 BABEL = node_modules/.bin/babel
 WEBPACK = node_modules/.bin/webpack
 LINT = node_modules/.bin/eslint
+JEST = node_modules/.bin/jest
 
 # node targetted babel: ignore .babelrc which targets webpack/browser
 BABEL_ARGS = --no-babelrc --source-maps --presets=react \
@@ -24,6 +25,9 @@ start-dev : public/favicon.ico
 
 start-debug :
 	DEBUG=express:* node --inspect ./src/server/dev-server.js
+
+test:
+	$(JEST)
 
 # node/server libs
 $(LIB) : lib/%.js: src/%.js

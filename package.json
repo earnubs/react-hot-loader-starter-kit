@@ -4,7 +4,8 @@
   "description": "Snap Finder UI",
   "scripts": {
     "build": "make build",
-    "start": "make start"
+    "start": "make start",
+    "test": "jest"
   },
   "main": "UI for Snap Finder Service",
   "repository": "git@github.com:earnubs/snapfui.git",
@@ -30,6 +31,7 @@
   },
   "dependencies": {
     "express": "^4.14.0",
+    "jest": "^19.0.2",
     "prop-types": "^15.5.8",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
