@@ -2,7 +2,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 
 import App from './containers/app';
 import reducers from './reducers';
@@ -20,7 +20,7 @@ const store = (module.hot && module.hot.data && module.hot.data.store)
 
 const contentEl = document.getElementById('content');
 
-render(
+hydrate(
   <Provider store={store}>
     <AppContainer>
       <App />
