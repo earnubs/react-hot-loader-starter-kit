@@ -14,9 +14,9 @@ const preloadedState = window.__PRELOADED_STATE__;
 const store = (module.hot && module.hot.data && module.hot.data.store)
   ? module.hot.data.store
   : createStore(
-  reducers, preloadedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+    reducers, preloadedState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
 
 const contentEl = document.getElementById('content');
 
