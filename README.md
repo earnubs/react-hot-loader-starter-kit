@@ -1,5 +1,11 @@
 # Universal React/Redux Starter Kit with Hot Reloading
 
+Install the project deps:
+
+```
+npm install
+```
+
 If you're just wanted to get set up with React, take a look at https://github.com/facebookincubator/create-react-app
 
 Other than a couple of bare bones 'container' components there is very little to this project aside from the setup for a JavaScript app that renders react both on server and client, with Expressjs and Webpack.

@@ -2,7 +2,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 
 import App from './containers/app';
 import reducers from './reducers';
@@ -14,13 +14,13 @@ const preloadedState = window.__PRELOADED_STATE__;
 const store = (module.hot && module.hot.data && module.hot.data.store)
   ? module.hot.data.store
   : createStore(
-  reducers, preloadedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+    reducers, preloadedState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
 
 const contentEl = document.getElementById('content');
 
-render(
+hydrate(
   <Provider store={store}>
     <AppContainer>
       <App />
