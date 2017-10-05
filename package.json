@@ -15,7 +15,7 @@
   "author": "Stephen Stewart <stephen.stewart@carisenda.com>",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^20.0.3"
+    "jest": "^21.2.1"
   },
   "dependencies": {
     "assets-webpack-plugin": "^3.5.1",
@@ -29,7 +29,7 @@
     "chalk": "^2.1.0",
     "enzyme": "^2.8.2",
     "eslint": "^3.14.0",
-    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jest": "^21.2.0",
     "eslint-plugin-react": "^7.0.1",
     "express": "^4.15.3",
     "prop-types": "^15.5.10",
