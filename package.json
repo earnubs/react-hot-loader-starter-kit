@@ -1,17 +1,17 @@
 {
-  "name": "snapfui",
+  "name": "Universal React Webpacker Starter",
   "version": "1.0.0",
   "engines": {
     "node": "7"
   },
-  "description": "Snap Finder UI",
+  "description": "Universal React Webpacker Starter",
   "scripts": {
     "postinstall": "make build",
     "start": "make start",
     "test": "jest"
   },
-  "main": "UI for Snap Finder Service",
-  "repository": "git@github.com:earnubs/snapfui.git",
+  "main": "index.js",
+  "repository": "git@github.com/earnubs/react-hot-loader-starter-kit.git",
   "author": "Stephen Stewart <stephen.stewart@carisenda.com>",
   "license": "MIT",
   "devDependencies": {
