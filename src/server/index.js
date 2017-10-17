@@ -14,7 +14,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 
-import webpackDevConfig from '../../webpack/dev-config.js';
+import webpackDevConfig from '../../webpack/development.js';
 
 import Layout from '../client/layout.js';
 import reducers from '../client/reducers';

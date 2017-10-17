@@ -7,8 +7,8 @@ JEST = node_modules/.bin/jest
 BABEL_ARGS = --no-babelrc --source-maps --presets=react,stage-2 \
 	     --plugins=babel-plugin-transform-es2015-modules-commonjs
 
-WEBPACK_PROD_ARGS = --config webpack/config.js -p
-WEBPACK_DEV_ARGS = --config webpack/dev-config.js
+WEBPACK_PROD_ARGS = --config webpack/production.js -p
+WEBPACK_DEV_ARGS = --config webpack/development.js
 
 SRC = $(shell find src -name "*.js" -type f)
 LIB = $(SRC:src/%.js=lib/%.js)
