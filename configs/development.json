@@ -1,0 +1,9 @@
+{
+  port: '3000',
+  oauth: {
+    github: {
+      clientId: '6fca31798d9837066784'
+      // secret is set as env var
+    }
+  }
+}

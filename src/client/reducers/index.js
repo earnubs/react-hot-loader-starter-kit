@@ -3,8 +3,21 @@ import { combineReducers } from 'redux';
 import * as actions from '../actions';
 
 const rootReducer = combineReducers({
+  identity,
   sayStuff
 });
+
+export function identity(state={}, action) {
+  switch (action.type) {
+    case actions.IDENTIFY:
+      return [
+        ...state,
+        ...action.ident,
+      ];
+    default:
+      return state;
+  }
+}
 
 export function sayStuff(state={}, action) {
   switch (action.type) {
