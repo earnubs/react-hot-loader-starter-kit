@@ -24,6 +24,12 @@ To start a development instance with debugging:
 make start-debug
 ```
 
+To build:
+
+```
+make build
+```
+
 To start production:
 
 ```
