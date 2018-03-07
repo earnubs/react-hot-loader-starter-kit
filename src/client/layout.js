@@ -3,6 +3,7 @@ import { Link, Route } from 'react-router-dom';
 
 import Home from './containers/home.js';
 import About from './containers/about.js';
+import DatasetTools from './containers/datasetTools.js';
 
 //debugger; // eslint-disable-line no-debugger
 
@@ -13,13 +14,15 @@ export default class Layout extends Component {
         <div className={'b-nav'}>
           <div className={'b-nav__wrap'}>
             <div className={'b-nav__homelink'}>
-              <Link to='/'>Home</Link>
-              <Link to='/about'>About</Link>
+              <Link to='/'>home</Link>
+              <Link to='/about'>about</Link>
+              <Link to='/datasetTools'>dataset.tools</Link>
             </div>
           </div>
         </div>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/datasetTools" component={DatasetTools} />
       </div>
     );
   }

@@ -1,19 +1,18 @@
 {
-  "name": "universal-webpack-starter",
+  "name": "noblemillie",
   "version": "1.0.0",
-  "private": true,
   "engines": {
     "node": "7"
   },
-  "description": "Universal React Webpacker Starter",
+  "description": "personal portfolio",
   "scripts": {
     "postinstall": "make build",
     "start": "make start",
     "test": "jest"
   },
   "main": "index.js",
-  "repository": "git@github.com/earnubs/react-hot-loader-starter-kit.git",
-  "author": "Stephen Stewart <stephen.stewart@carisenda.com>",
+  "repository": "git@github.com/noblemillie/noblemillie.git",
+  "author": "Noble Millie <noble.reactor@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "enzyme": "^3.1.0",
@@ -48,7 +47,6 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "serve-favicon": "^2.4.3",
-    "source-map-support": "^0.5.0",
     "source-map-support": "^0.4.15",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.10.2",
