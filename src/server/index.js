@@ -23,7 +23,7 @@ import assets from '../../webpack-assets.json';
 
 const app = Express();
 
-app.use(favicon('./public/favicon.ico'));
+app.use(favicon('./public/penrose.ico'));
 app.use('/pub', Express.static('public', { maxAge: '365d' }));
 
 // TODO ensure this gets DCE

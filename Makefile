@@ -15,12 +15,12 @@ LIB = $(SRC:src/%.js=lib/%.js)
 
 all : build
 
-build : $(LIB) public/.dirstamp public/favicon.ico
+build : $(LIB) public/.dirstamp public/penrose.ico
 
 start :
 	node ./lib/server/server.js
 
-start-dev : public/favicon.ico
+start-dev : public/penrose.ico
 	node ./src/server/dev-server.js
 
 start-debug :
@@ -46,7 +46,7 @@ else
 	$(WEBPACK) $(WEBPACK_DEV_ARGS)
 endif
 
-public/favicon.ico: assets/favicon.ico
+public/penrose.ico: assets/favicon.ico
 	mkdir -p ./public
 	cp $< $@
 
