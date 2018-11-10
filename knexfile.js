@@ -5,7 +5,7 @@ module.exports = {
   development: {
     debug: true,
     client: 'postgresql',
-    connection: 'postgres://localhost:5432/passport_users',
+    connection: 'postgres://postgres@postgres:5432/passport_users',
     migrations: {
       directory: __dirname + '/src/server/db/migrations'
     },

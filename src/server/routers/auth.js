@@ -10,6 +10,7 @@ import config from '../../config';
 
 const SessionStore = RedisStore(session);
 
+// TODO get web, postgres, redis hostnames ...
 const SESSION_SECRET = config.get('session:secret');
 const GITHUB_CLIENT_ID = config.get('oauth:github:clientId');
 const GITHUB_CLIENT_SECRET = config.get('oauth:github:secret');
@@ -31,7 +32,7 @@ passport.use(new GitHubStrategy(
   {
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/github/callback'
+    callbackURL: 'http://web:3000/auth/github/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     return knex('users').where({ github_id: profile.id }).first()
@@ -56,7 +57,7 @@ passport.use(new GitHubStrategy(
 
 router.use(session({
   store: new SessionStore({
-    host: 'localhost',
+    host: 'redis',
     port: 6379
   }),
   secret: SESSION_SECRET,

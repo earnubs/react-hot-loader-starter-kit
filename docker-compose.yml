@@ -1,12 +1,19 @@
 version: "3"
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: "production"
     ports:
       - "3000:3000"
     depends_on:
       - postgres
       - redis
+    environment:
+      - OAUTH_GITHUB_SECRET
+      - SESSION_SECRET
   redis:
     image: "redis"
     volumes:
@@ -16,6 +23,8 @@ services:
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD
 volumes:
   redis_data:
   pgdata:
