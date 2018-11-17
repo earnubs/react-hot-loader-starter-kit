@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        NODE_ENV: "production"
     ports:
       - "3000:3000"
     depends_on:
@@ -14,6 +12,7 @@ services:
     environment:
       - OAUTH_GITHUB_SECRET
       - SESSION_SECRET
+      - NODE_ENV
   redis:
     image: "redis"
     volumes:

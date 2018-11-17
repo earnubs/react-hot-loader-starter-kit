@@ -4,6 +4,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 
 module.exports = {
   target: 'web',
+  context: resolve(__dirname, '../'),
   entry: {
     main: './src/client/index.js',
     // TODO consider externals here
@@ -21,7 +22,7 @@ module.exports = {
     path: resolve(__dirname, '../public'),
     publicPath: '/pub/'
   },
-  stats: 'verbose',
+  devtool: 'source-map',
   performance: {
     hints: 'warning'
   },

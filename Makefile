@@ -1,7 +1,9 @@
-BABEL = node_modules/.bin/babel
-WEBPACK = node_modules/.bin/webpack
-LINT = node_modules/.bin/eslint
-JEST = node_modules/.bin/jest
+NODE_PATH = node_modules/.bin
+BABEL = $(NODE_PATH)/babel
+WEBPACK = $(NODE_PATH)/webpack
+LINT = $(NODE_PATH)/eslint
+JEST = $(NODE_PATH)/jest
+KNEX = $(NODE_PATH)/knex
 
 # node targetted babel: ignore .babelrc which targets webpack/browser
 BABEL_ARGS = --no-babelrc --source-maps --presets=react,stage-2 \
@@ -20,6 +22,10 @@ all : build
 build : $(LIB) public/.dirstamp public/favicon.ico
 
 start : build
+	node ./lib/server/server.js
+
+start-with-migrations:
+	$(KNEX) migrate:latest
 	node ./lib/server/server.js
 
 start-dev : public/favicon.ico
@@ -61,4 +67,4 @@ clean :
 clean-deps :
 	rm -rf node_modules
 
-.PHONY: build clean clean-deps start start-dev
+.PHONY: build clean clean-deps start start-dev start-with-migrations

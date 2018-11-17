@@ -48,10 +48,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.get('*', (req, res) => {
-  if (req.session.views) {
-    req.session.views++;
-  } else {
-    req.session.views = 1;
+  if (req.session) {
+    if (req.session.views) {
+      req.session.views++;
+    } else {
+      req.session.views = 1;
+    }
   }
 
   // TODO insert req.user into store here (hydrate state)

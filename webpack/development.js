@@ -26,8 +26,7 @@ module.exports = {
   output: {
     filename: '[name].js', // don't use chunkhash in dev
     path: resolve(__dirname, '../public'),
-    pathinfo: true,
-    publicPath: '/'
+    publicPath: '/pub/'
   },
   devtool: 'inline-source-map',
   performance: {

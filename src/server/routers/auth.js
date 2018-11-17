@@ -32,7 +32,7 @@ passport.use(new GitHubStrategy(
   {
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: 'http://web:3000/auth/github/callback'
+    callbackURL: 'http://localhost:3000/auth/github/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     return knex('users').where({ github_id: profile.id }).first()
@@ -70,7 +70,7 @@ router.use(passport.session());
 
 router.use(function (req, res, next) {
   if (!req.session) {
-    return next(new Error('Oh no, no session!')); // handle error
+    // return next(new Error('Oh no, no session!')); // handle error
   }
   next(); // otherwise continue
 });

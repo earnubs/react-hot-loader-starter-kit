@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Home from './containers/home.js';
@@ -13,29 +13,31 @@ export class Component extends React.Component {
   render() {
     const { displayName } = this.props.identity;
     return (
-      <div>
-        <div className={'b-nav'}>
-          <div className={'b-nav__wrap'}>
-            <div className={'b-nav__homelink'}>
-              <Link to='/'>Home</Link>
-              <Link to='/about'>About</Link>
-              { displayName ?
-                <span>
+      <Router>
+        <div>
+          <div className={'b-nav'}>
+            <div className={'b-nav__wrap'}>
+              <div className={'b-nav__homelink'}>
+                <Link to='/'>Home</Link>
+                <Link to='/about'>About</Link>
+                { displayName ?
+                  <span>
                     Hello {displayName}
                     (
-                  <a href='/logout'>Logout {this.props.identity.displayName}</a>
+                    <a href='/logout'>Logout {this.props.identity.displayName}</a>
                     )
-                </span>
-                :
-                <Link to='/login'>Login</Link>
-              }
+                  </span>
+                  :
+                  <Link to='/login'>Login</Link>
+                }
+              </div>
             </div>
           </div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/login" component={Login} />
         </div>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/login" component={Login} />
-      </div>
+      </Router>
     );
   }
 }
